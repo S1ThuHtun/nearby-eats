@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-/// アプリ全体で使用するカラー定数
-class AppColors {
+class AppTheme {
   static const primary = Color(0xFF26215C);
   static const accent = Color(0xFFFF6B35);
   static const background = Color(0xFFF8F7FF);
@@ -10,26 +9,24 @@ class AppColors {
   static const textPrimary = Color(0xFF1A1A2E);
   static const textSecondary = Color(0xFF6B6B8A);
   static const divider = Color(0xFFE0DFEE);
-}
 
-class AppTheme {
   /// MaterialApp が利用している基本テーマ（ThemeData）を返します。
   static ThemeData get theme => ThemeData(
     useMaterial3: true,
     // mPlusRounded1cTextTheme フォントをアプリ全体に適用します。
     textTheme: GoogleFonts.mPlusRounded1cTextTheme(),
     colorScheme: ColorScheme.fromSeed(
-      seedColor: AppColors.primary,
-      primary: AppColors.primary,
-      secondary: AppColors.accent,
-      surface: AppColors.surface,
+      seedColor: primary,
+      primary: primary,
+      secondary: accent,
+      surface: surface,
       brightness: Brightness.light,
     ),
-    scaffoldBackgroundColor: AppColors.background,
+    scaffoldBackgroundColor: background,
 
     // AppBarの設計テーマ
     appBarTheme: AppBarTheme(
-      backgroundColor: AppColors.primary,
+      backgroundColor: primary,
       foregroundColor: Colors.white,
       elevation: 0,
       centerTitle: true,
@@ -44,7 +41,7 @@ class AppTheme {
     // ボタンの色と設計
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: AppColors.primary,
+        backgroundColor: primary,
         foregroundColor: Colors.white,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(8)),
@@ -55,7 +52,7 @@ class AppTheme {
 
     // レストランの一覧表示のカード設計
     cardTheme: const CardThemeData(
-      color: AppColors.surface,
+      color: surface,
       elevation: 2,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(12)),
@@ -70,7 +67,7 @@ class AppTheme {
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(8)),
-        borderSide: BorderSide(color: AppColors.primary, width: 2),
+        borderSide: BorderSide(color: primary, width: 2),
       ),
       contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
     ),
