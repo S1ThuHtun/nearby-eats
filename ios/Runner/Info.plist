@@ -2,6 +2,19 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+  <!-- url_launcher が http/https リンクをブラウザで開くために必要な設定 -->
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>https</string>
+		<string>http</string>
+	</array>
+
+	<!-- アプリがGPSアクセスを要求する際に、ユーザーに表示される位置情報許可メッセージ -->
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>現在地付近のレストランを検索するために位置情報を使用します。</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>現在地付近のレストランを検索するために位置情報を使用します。</string>
+  
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
