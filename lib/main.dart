@@ -4,7 +4,10 @@ import 'package:nearby_eats/screens/search_screen.dart';
 import 'theme/app_theme.dart';
 
 Future<void> main() async {
-  await dotenv.load(fileName: '.env');
+  WidgetsFlutterBinding.ensureInitialized();
+  try {
+    await dotenv.load(fileName: '.env');
+  } catch (_) {}
   runApp(const MyApp());
 }
 
