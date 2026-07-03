@@ -1,14 +1,16 @@
-/// App-wide constants for API configuration and search options.
+/// アプリ全体で使用する API 設定や検索オプションの定数をまとめたものです。
 class Constants {
-  // HotPepper Gourmet Search API base URL
+  // HotPepper グルメ検索 API のベース URL
   static const String hotpepperBaseUrl =
       'https://webservice.recruit.co.jp/hotpepper/gourmet/v1/';
 
-  // Number of results to fetch per page
+  // 1 ページあたりで取得する検索結果数です。
   static const int resultsPerPage = 20;
 
-  // Search radius options (in meters) shown to the user in the search screen
-  // Values follow the HotPepper API's range parameter: 1=300m, 2=500m, 3=1000m, 4=2000m, 5=3000m
+  /// 検索画面でユーザーに提示する検索半径オプション（メートル単位）です。
+  ///
+  /// 値は HotPepper API の range パラメーター仕様に従います： 1 = 300m, 2 = 500m, 3 = 1000m, 4 = 2000m, 5 = 3000m
+
   static const List<Map<String, dynamic>> radiusOptions = [
     {'label': '300m', 'value': 1},
     {'label': '500m', 'value': 2},

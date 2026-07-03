@@ -1,3 +1,8 @@
+// HotPepper グルメ API から取得した単一のレストランを表すデータモデル。
+// 各インスタンスは、名前・住所・写真などの店舗情報を保持し、
+// Restaurant.fromJson によって API の JSON レスポンスからパースされます。
+// 結果一覧(Results Screen)画面および詳細画面でレストラン情報を表示するために使用されます。
+
 class Restaurant {
   final String id; // 各レストラン ID
   final String name; // 各レストラン名
@@ -23,7 +28,7 @@ class Restaurant {
     required this.urls,
   });
 
-  /// Creates a Restaurant from a JSON map returned by the HotPepper API.
+  /// HotPepper API の JSON マップから Restaurant インスタンスを生成します。
   factory Restaurant.fromJson(Map<String, dynamic> json) {
     return Restaurant(
       id: json['id'] ?? '',
