@@ -12,7 +12,8 @@ class Restaurant {
   final String logoImage; // リストに表示する画像 image URL
   final String photo; // 詳細画面用の写真URL
   final String genre; // 料理ジャンル（和食、イタリア料理...）
-  final String budget; // 平均予算の説明
+  final String averageBudget; // 平均予算の説明
+  final String budgetName;
   final String urls; // レストランのHotPepper掲載ページのURL
 
   const Restaurant({
@@ -24,7 +25,8 @@ class Restaurant {
     required this.logoImage,
     required this.photo,
     required this.genre,
-    required this.budget,
+    required this.averageBudget,
+    required this.budgetName,
     required this.urls,
   });
 
@@ -39,7 +41,8 @@ class Restaurant {
       logoImage: json['logo_image'] ?? '',
       photo: json['photo']?['mobile']?['l'] ?? '',
       genre: json['genre']?['name'] ?? '',
-      budget: json['budget']?['average'] ?? '',
+      averageBudget: json['budget']?['average'] ?? '',
+      budgetName: json['budget']?['name'] ?? '',
       urls: json['urls']?['pc'] ?? '',
     );
   }

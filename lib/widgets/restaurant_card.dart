@@ -86,15 +86,15 @@ class RestaurantCard extends StatelessWidget {
                           ),
                         ],
                         if (restaurant.genre.isNotEmpty &&
-                            restaurant.budget.isNotEmpty)
+                            restaurant.averageBudget.isNotEmpty)
                           Text(
                             '  ·  ',
                             style: TextStyle(color: AppTheme.textSecondary),
                           ),
-                        if (restaurant.budget.isNotEmpty)
+                        if (restaurant.averageBudget.isNotEmpty)
                           Flexible(
                             child: Text(
-                              restaurant.budget,
+                              restaurant.averageBudget,
                               style: TextStyle(
                                 fontSize: 12,
                                 color: AppTheme.textSecondary,

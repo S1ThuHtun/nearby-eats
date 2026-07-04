@@ -12,7 +12,7 @@ class DetailScreen extends StatelessWidget {
 
   final Restaurant restaurant;
 
-  /// Opens the restaurant's HotPepper page in the device browser.
+  /// デバイスのブラウザで店舗の HotPepper ページを開きます。
   Future<void> _openUrl(BuildContext context) async {
     if (restaurant.urls.isEmpty) return;
 
@@ -34,6 +34,23 @@ class DetailScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(restaurant.name, overflow: TextOverflow.ellipsis),
       ),
+
+      // HotPepper の店舗ページへ遷移するリンクボタン
+      bottomNavigationBar: restaurant.urls.isEmpty
+          ? null
+          : SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(20, 12, 20, 12),
+                child: ElevatedButton.icon(
+                  onPressed: () => _openUrl(context),
+                  icon: const Icon(Icons.open_in_new),
+                  label: const Text('HotPepperで詳細を見る'),
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(double.infinity, 48),
+                  ),
+                ),
+              ),
+            ),
 
       body: SingleChildScrollView(
         child: Column(
@@ -69,16 +86,28 @@ class DetailScreen extends StatelessWidget {
                           label: restaurant.genre,
                           color: AppTheme.primary,
                         ),
-                      if (restaurant.budget.isNotEmpty)
+
+                      // 平均予算
+                      if (restaurant.averageBudget.isNotEmpty)
                         InfoChip(
                           icon: Icons.payments_outlined,
-                          label: restaurant.budget,
+                          label: restaurant.averageBudget,
                           color: AppTheme.textSecondary,
                         ),
                     ],
                   ),
 
                   const SizedBox(height: 10),
+
+                  // 予算カテゴリ名
+                  if (restaurant.budgetName.isNotEmpty) ...[
+                    InfoRow(
+                      icon: Icons.payments_outlined,
+                      label: '平均予算',
+                      value: restaurant.budgetName,
+                    ),
+                    const DetailDivider(),
+                  ],
 
                   // 住所
                   if (restaurant.address.isNotEmpty) ...[
@@ -107,21 +136,7 @@ class DetailScreen extends StatelessWidget {
                       label: '営業時間',
                       value: restaurant.open,
                     ),
-                    const DetailDivider(),
                   ],
-
-                  const SizedBox(height: 24),
-
-                  // HotPepper の店舗ページへ遷移するリンクボタン
-                  if (restaurant.urls.isNotEmpty)
-                    ElevatedButton.icon(
-                      onPressed: () => _openUrl(context),
-                      icon: const Icon(Icons.open_in_new),
-                      label: const Text('HotPepperで詳細を見る'),
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: const Size(double.infinity, 48),
-                      ),
-                    ),
                 ],
               ),
             ),
