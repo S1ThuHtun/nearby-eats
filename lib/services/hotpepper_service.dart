@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:geolocator/geolocator.dart';
@@ -30,9 +31,16 @@ class HotpepperService {
     }
 
     // 位置情報取得に許可された場合　＝＞　現在地の位置情報を取得
-    return await Geolocator.getCurrentPosition(
-      locationSettings: const LocationSettings(accuracy: LocationAccuracy.high),
-    );
+    try {
+      return await Geolocator.getCurrentPosition(
+        locationSettings: const LocationSettings(
+          accuracy: LocationAccuracy.medium,
+          timeLimit: Duration(seconds: 10),
+        ),
+      );
+    } on TimeoutException {
+      throw Exception('位置情報の取得がタイムアウトしました。もう一度お試しください。');
+    }
   }
 
   Future<Map<String, dynamic>> searchRestaurants({

@@ -13,7 +13,7 @@ class Restaurant {
   final String photo; // 詳細画面用の写真URL
   final String genre; // 料理ジャンル（和食、イタリア料理...）
   final String averageBudget; // 平均予算の説明
-  final String budgetName;
+  final String budgetName; // 予算カテゴリ名
   final String urls; // レストランのHotPepper掲載ページのURL
 
   const Restaurant({

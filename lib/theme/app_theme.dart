@@ -46,7 +46,7 @@ class AppTheme {
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(8)),
         ),
-        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 24),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
       ),
     ),
 
@@ -57,7 +57,7 @@ class AppTheme {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(12)),
       ),
-      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      margin: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
     ),
 
     // 検索エリアの設計
