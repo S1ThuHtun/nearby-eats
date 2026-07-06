@@ -83,7 +83,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
           final expand = await showDialog<bool>(
             context: context,
             builder: (_) => AlertDialog(
-              actionsAlignment: MainAxisAlignment.spaceBetween,
+              actionsAlignment: MainAxisAlignment.spaceEvenly,
               actionsOverflowButtonSpacing: 8,
               title: const Text('レストランが見つかりませんでした'),
               content: Text.rich(

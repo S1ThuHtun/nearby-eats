@@ -32,18 +32,25 @@ class Restaurant {
 
   /// HotPepper API の JSON マップから Restaurant インスタンスを生成します。
   factory Restaurant.fromJson(Map<String, dynamic> json) {
+    // ネストされたオブジェクトを先に typed cast して null-safe にアクセスする
+    final genre = json['genre'] as Map<String, dynamic>?;
+    final photo = json['photo'] as Map<String, dynamic>?;
+    final mobile = photo?['mobile'] as Map<String, dynamic>?;
+    final budget = json['budget'] as Map<String, dynamic>?;
+    final urls = json['urls'] as Map<String, dynamic>?;
+
     return Restaurant(
-      id: json['id'] ?? '',
-      name: json['name'] ?? '',
-      address: json['address'] ?? '',
-      access: json['access'] ?? '',
-      open: json['open'] ?? '',
-      logoImage: json['logo_image'] ?? '',
-      photo: json['photo']?['mobile']?['l'] ?? '',
-      genre: json['genre']?['name'] ?? '',
-      averageBudget: json['budget']?['average'] ?? '',
-      budgetName: json['budget']?['name'] ?? '',
-      urls: json['urls']?['pc'] ?? '',
+      id: json['id'] as String? ?? '',
+      name: json['name'] as String? ?? '',
+      address: json['address'] as String? ?? '',
+      access: json['access'] as String? ?? '',
+      open: json['open'] as String? ?? '',
+      logoImage: json['logo_image'] as String? ?? '',
+      photo: mobile?['l'] as String? ?? '',
+      genre: genre?['name'] as String? ?? '',
+      averageBudget: budget?['average'] as String? ?? '',
+      budgetName: budget?['name'] as String? ?? '',
+      urls: urls?['pc'] as String? ?? '',
     );
   }
 }
