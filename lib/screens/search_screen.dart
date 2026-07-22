@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import '../services/hotpepper_service.dart';
+import '../services/location_service.dart';
 import '../widgets/search_screen_widgets/location_card.dart';
 import '../widgets/search_screen_widgets/radius_selector.dart';
 import '../widgets/search_screen_widgets/section_label.dart';
@@ -14,7 +14,7 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  final HotpepperService _service = HotpepperService();
+  final LocationService _locationService = LocationService();
   final TextEditingController _keywordController = TextEditingController();
 
   Position? _currentPosition; // 取得した GPS 位置情報を保持
@@ -30,12 +30,14 @@ class _SearchScreenState extends State<SearchScreen> {
     });
 
     try {
-      final position = await _service.getCurrentLocation();
+      final position = await _locationService.getCurrentLocation();
+      if (!mounted) return;
       setState(() => _currentPosition = position);
     } catch (e) {
+      if (!mounted) return;
       setState(() => _locationError = e.toString());
     } finally {
-      setState(() => _isLoadingLocation = false);
+      if (mounted) setState(() => _isLoadingLocation = false);
     }
   }
 
