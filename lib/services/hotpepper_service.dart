@@ -38,7 +38,14 @@ class HotpepperService {
       Constants.hotpepperBaseUrl,
     ).replace(queryParameters: params);
 
-    final response = await http.get(uri);
+    final http.Response response;
+    try {
+      response = await http.get(uri);
+    } catch (_) {
+      // SocketException 等の生の例外には接続先URL（APIキーを含む）が
+      // 含まれるため、そのまま表示せずクリーンなメッセージに変換する
+      throw const AppException('ネットワークに接続できませんでした。通信環境をご確認ください。');
+    }
 
     if (response.statusCode != 200) {
       throw AppException('APIリクエストが失敗しました。ステータス: ${response.statusCode}');

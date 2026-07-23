@@ -12,14 +12,17 @@ class DetailScreen extends StatelessWidget {
 
   final Restaurant restaurant;
 
-  /// デバイスのブラウザで店舗の HotPepper ページを開きます。
+  // デバイスのブラウザで店舗の HotPepper ページを開きます。
+  // `canLaunchUrl` は iOS の `canOpenURL` や Android 11+ の Package
+  // Visibility 制約により https URL に対して信頼できないため、事前チェック
+  // はせず launchUrl を直接呼び、失敗時のみ catch する方式にしています。
   Future<void> _openUrl(BuildContext context) async {
     if (restaurant.urls.isEmpty) return;
 
     final uri = Uri.parse(restaurant.urls);
-    if (await canLaunchUrl(uri)) {
+    try {
       await launchUrl(uri, mode: LaunchMode.externalApplication);
-    } else {
+    } catch (_) {
       if (context.mounted) {
         ScaffoldMessenger.of(
           context,
