@@ -73,12 +73,18 @@ class _SearchScreenState extends State<SearchScreen> {
     return Scaffold(
       appBar: AppBar(title: const Text('NEARBY EATS')),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
+        // キーボード表示時にキーワード入力欄が隠れないよう、キーボードの高さ分
+        // 下部にスクロール余白を追加する
+        padding: EdgeInsets.fromLTRB(
+          20,
+          20,
+          20,
+          20 + MediaQuery.of(context).viewInsets.bottom,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SizedBox(height: 12),
-
             // 現在地セクション
             SectionLabel(label: '現在地'),
             const SizedBox(height: 8),
@@ -106,6 +112,8 @@ class _SearchScreenState extends State<SearchScreen> {
             const SizedBox(height: 8),
             TextField(
               controller: _keywordController,
+              textInputAction: TextInputAction.search,
+              onSubmitted: (_) => _search(),
               decoration: const InputDecoration(
                 hintText: '例：焼肉、寿司、個室',
                 prefixIcon: Icon(Icons.search),

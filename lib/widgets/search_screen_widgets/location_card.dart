@@ -35,32 +35,40 @@ class LocationCard extends StatelessWidget {
               ),
               const SizedBox(width: 12),
               Expanded(
-                child: isLoading
-                    ? const Text('現在地を取得中...')
-                    : error != null
-                    ? Text(
-                        error!,
-                        style: const TextStyle(color: Colors.red, fontSize: 13),
-                      )
-                    : position != null
-                    ? Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            '現在地を取得しました',
-                            style: TextStyle(fontWeight: FontWeight.w600),
+                child: AnimatedSize(
+                  duration: const Duration(milliseconds: 200),
+                  alignment: Alignment.topLeft,
+                  child: isLoading
+                      ? const Text('現在地を取得中...')
+                      : error != null
+                      ? Text(
+                          error!,
+                          style: const TextStyle(
+                            color: Colors.red,
+                            fontSize: 13,
                           ),
-                          Text(
-                            '緯度: ${position!.latitude.toStringAsFixed(5)}  '
-                            '経度: ${position!.longitude.toStringAsFixed(5)}',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: AppTheme.textSecondary,
+                        )
+                      : position != null
+                      ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Text(
+                              '現在地を取得しました',
+                              style: TextStyle(fontWeight: FontWeight.w600),
                             ),
-                          ),
-                        ],
-                      )
-                    : const Text('タップして現在地を取得'),
+                            Text(
+                              '緯度: ${position!.latitude.toStringAsFixed(5)}  '
+                              '経度: ${position!.longitude.toStringAsFixed(5)}',
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: AppTheme.textSecondary,
+                              ),
+                            ),
+                          ],
+                        )
+                      : const Text('タップして現在地を取得'),
+                ),
               ),
               if (isLoading)
                 const SizedBox(
