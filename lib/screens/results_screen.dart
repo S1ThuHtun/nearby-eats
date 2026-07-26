@@ -172,8 +172,8 @@ class _ResultsScreenState extends State<ResultsScreen> {
         _isLoadingMore = false;
       });
     } catch (e) {
-      if (mounted) setState(() => _isLoadingMore = false);
       if (mounted) {
+        setState(() => _isLoadingMore = false);
         ScaffoldMessenger.of(
           context,
         ).showSnackBar(const SnackBar(content: Text('追加の読み込みに失敗しました。')));
